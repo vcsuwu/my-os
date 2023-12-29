@@ -21,12 +21,18 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+    
+    pkgs.grim
+    pkgs.slurp
+    pkgs.hyprpaper
+
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -70,15 +76,19 @@
     # EDITOR = "emacs";
   };
 
+  fonts.fontconfig.enable = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   programs.firefox = {
     enable = true;
     profiles.main = {
+      isDefault = true;
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
       ];
+      search.default = "DuckDuckGo";
     };
   };
 
@@ -88,6 +98,28 @@
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
     ];
+  };
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        font = "Iosevka Nerd Font Mono:size=12";
+      };
+      colors = {
+        alpha = 0.7;
+	foreground = "ffffff";
+	background = "000000";
+      };
+    };
+  };
+
+  programs.wofi = {
+    enable = true;
+  };
+
+  services.dunst = {
+    enable = true;
   };
 
 }
