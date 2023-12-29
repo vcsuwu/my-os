@@ -76,7 +76,6 @@
     description = "vocus";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       vesktop
       keepassxc
       neovim
@@ -85,11 +84,7 @@
       wofi
       dunst
       hyprpaper
-      udiskie
-      ranger
-      udisks
       lxqt.lxqt-policykit
-    #  thunderbird
     ];
   };
 

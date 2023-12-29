@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -72,6 +72,15 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.firefox = {
+    enable = true;
+    profiles.main = {
+      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        ublock-origin
+      ];
+    };
+  };
 
   programs.vscode = {
     enable = true;
